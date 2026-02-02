@@ -56,12 +56,12 @@ app.use(
   generateConceptExplanation
 );
 
-app.listen(3000, () => {
-  connectDB();
-  // console.log(Object.keys(User.schema.paths));
+connectDB();
+// app.listen(3000, () => {
+//   // console.log(Object.keys(User.schema.paths));
 
-  console.log("Server is running on port 3000", 3000);
-});
+//   console.log("Server is running on port 3000", 3000);
+// });
 
 
 
