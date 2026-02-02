@@ -3,6 +3,8 @@ import connectDB from "./db/index.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan"
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
 import authRoutes from "./routes/auth.routes.js"
 import sessionRoutes from "./routes/sessionRoutes.js"
 import questionRoutes from "./routes/questionRoutes.js"
@@ -27,6 +29,8 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(morgan("tiny"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 
 

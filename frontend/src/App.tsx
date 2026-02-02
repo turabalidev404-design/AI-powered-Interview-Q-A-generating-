@@ -1,14 +1,33 @@
-import Login from './pages/Login.page'
-import SignUp from './pages/SignUp.page'
+import React, { type JSX } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import SignUp from "./pages/SignUp.page";
+import Login from "./pages/Login.page"; // Make sure this exists
+import RandomTest from "./pages/RandomTest.page";
 
-function App() {
+// Simple auth check (replace with real logic as needed)
+const isAuthenticated = () => !!localStorage.getItem("token");
 
-  return (
-    <>
-      <Login />
-      <SignUp/>
-    </>
-  )
-}
+// Protected Route Component
+const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+  return isAuthenticated() ? children : <Navigate to="/login" />;
+};
 
-export default App
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/random"
+        element={
+          <PrivateRoute>
+            <RandomTest />
+          </PrivateRoute>
+        }
+      />
+      <Route path="*" element={<Navigate to="/signup" />} />
+    </Routes>
+  </Router>
+);
+
+export default App;

@@ -3,6 +3,7 @@ import Input from "../component/Reusable/Input"
 import Button from "../component/Button/Button"
 import { API_PATHS } from "../utils/apiPaths"
 import api from "../utils/axiosInstance"
+import { useNavigate } from "react-router-dom"
 
 
 const SignUp = () => {
@@ -12,6 +13,7 @@ const SignUp = () => {
         password: ""
     })
     const [errors, setErrors] = useState<{ [key: string]: string }>({})
+    const navigate = useNavigate();
 
 
 
@@ -55,7 +57,7 @@ const SignUp = () => {
             })
             console.log(response)
             if (response.status === 201) {
-                console.log(response.data.message || "Registration successful");
+                navigate("/login");
             }
         } catch (error: any) {
             console.log("ERROR STATUS:", error.response?.status);
