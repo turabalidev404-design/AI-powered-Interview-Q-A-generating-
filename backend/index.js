@@ -56,7 +56,7 @@ app.use(
   generateConceptExplanation
 );
 
-connectDB();
+await connectDB();
 // app.listen(3000, () => {
 //   // console.log(Object.keys(User.schema.paths));
 
