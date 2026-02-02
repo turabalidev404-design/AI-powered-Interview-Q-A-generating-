@@ -1,15 +1,19 @@
 
 interface ButtonProps {
-  count: number
-  increment: () => void
+  TypeBtn : "submit",
+Text: String,
 }
-const Button = ({count, increment}:ButtonProps) => {
+const Button = ({
+  TypeBtn,
+Text
+}:ButtonProps) => {
   
 
   return (
     <>
-      <h1>Count: {count}</h1>
-      <button onClick={increment}>Increment</button>
+      <button
+      type={TypeBtn}
+      >{Text}</button>
     </>
   )
 }
